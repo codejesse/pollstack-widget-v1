@@ -3,6 +3,12 @@ import {Label} from "@/components/ui/label.jsx"
 import {Input} from "@/components/ui/input.jsx"
 import {Textarea} from "@/components/ui/textarea.jsx";
 import {useState} from "react";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
+import bg from "../assets/gradient-bg.svg"
 
 export const Widget = () => {
     const [rating, setRating] = useState(3);
@@ -13,39 +19,46 @@ export const Widget = () => {
 
     return (
         <div className="fixed bottom-4 right-4 z-50">
-            <Button className="rounded-full hover:scale-105 transform transition-all ease-in-out">Give us feedback</Button>
-            <div className="space-y-2">
-                <h3>Send us your feedback</h3>
-                <form>
-                    <div className="grid grid-cols-2 gap-2">
-                        <div className="space-y-2">
-                            <Label htmlFor="name">Name</Label>
-                            <Input id="name" placeholder="Enter your name"/>
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input id="email" type="email" placeholder="Enter a valid email"/>
-                        </div>
+            <Popover>
+                <PopoverTrigger asChild>
+                    <Button className="rounded-full hover:scale-105 transform transition-all ease-in-out">Give us feedback</Button>
+                </PopoverTrigger>
+                <PopoverContent className="rounded-lg bg-card p-4 w-full shadow-lg max-w-md">
+                    <div className="space-y-2 w-[400px]">
+                        {/*<img className="w-full rounded-t-2xl" src={bg} alt="background"/>*/}
+                        <h3>Send us your feedback</h3>
+                        <form>
+                            <div className="grid grid-cols-2 gap-2">
+                                <div className="space-y-2">
+                                    <Label htmlFor="name">Name</Label>
+                                    <Input id="name" placeholder="John Doe"/>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="email">Email</Label>
+                                    <Input id="email" type="email" placeholder="Johndoe@example"/>
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="feedback">Feedback</Label>
+                                <Textarea id="feedback" placeholder="What do you think?" className="min-h-[100px]"/>
+                            </div>
+                            <div className="flex gap-1 mt-2">
+                                {[...Array(5)].map((_, index) => (
+                                    <StarIcon
+                                        key={index}
+                                        className={`h-5 w-5 cursor-pointer ${
+                                            rating > index ? "fill-primary" : "fill-muted stroke-muted-foreground"
+                                        }`}
+                                        onClick={() => onSelectStar(index)}
+                                    />
+                                ))}
+                            </div>
+                            <Button className="hidden cursor-not-allowed" type="button" variant="outlined"><CameraIcon/></Button>
+                            <Button className="mt-4 w-full" type="submit">Submit</Button>
+                        </form>
                     </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="feedback">Feedback</Label>
-                        <Textarea id="feedback" placeholder="What do you think?" className="min-h-[100px]"/>
-                    </div>
-                    <div className="flex gap-1 mt-2">
-                        {[...Array(5)].map((_, index) => (
-                            <StarIcon
-                                key={index}
-                                className={`h-5 w-5 cursor-pointer ${
-                                    rating > index ? "fill-primary" : "fill-muted stroke-muted-foreground"
-                                }`}
-                                onClick={() => onSelectStar(index)}
-                            />
-                        ))}
-                    </div>
-                    <Button className="cursor-not-allowed" type="button" variant="outlined"><CameraIcon /></Button>
-                    <Button className="mt-4" type="submit">Submit</Button>
-                </form>
-            </div>
+                </PopoverContent>
+            </Popover>
         </div>
     )
 }
