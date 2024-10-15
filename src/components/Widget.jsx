@@ -12,22 +12,42 @@ import bg from "../assets/gradient-bg.svg"
 
 export const Widget = () => {
     const [rating, setRating] = useState(3);
+    const [submitted, setSubmitted] = useState(false)
 
     const onSelectStar = (index) => {
         setRating(index + 1);
     };
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = {
+            name: form.name.value,
+            email: form.email.value,
+            feedback: form.feedback.value,
+            rating,
+        }
+        setSubmitted(true);
+        console.log(data)
+    }
+
     return (
-        <div className="fixed bottom-4 right-4 z-50">
+        <div className="widget fixed bottom-4 right-4 z-50">
             <Popover>
                 <PopoverTrigger asChild>
                     <Button className="rounded-full hover:scale-105 transform transition-all ease-in-out">Give us feedback</Button>
                 </PopoverTrigger>
-                <PopoverContent className="rounded-lg bg-card p-4 w-full shadow-lg max-w-md">
-                    <div className="space-y-2 w-[400px]">
-                        {/*<img className="w-full rounded-t-2xl" src={bg} alt="background"/>*/}
+                <PopoverContent className="widget rounded-lg bg-card p-4 w-full shadow-lg max-w-md">
+                    {/*<img className="w-full rounded-t-2xl" src={bg} alt="background"/>*/}
+                    { submitted ? (
+                        <div>
+                            <h2 className="font-bold text-xl">Thanks for your feedback!</h2>
+                            <p>We appreciate your feedback and always love to use your
+                                feedback to serve you better.</p>
+                        </div>
+                    ): ( <div className="space-y-2 w-[400px]">
                         <h3>Send us your feedback</h3>
-                        <form>
+                        <form onSubmit={onSubmit}>
                             <div className="grid grid-cols-2 gap-2">
                                 <div className="space-y-2">
                                     <Label htmlFor="name">Name</Label>
@@ -56,7 +76,7 @@ export const Widget = () => {
                             <Button className="hidden cursor-not-allowed" type="button" variant="outlined"><CameraIcon/></Button>
                             <Button className="mt-4 w-full" type="submit">Submit</Button>
                         </form>
-                    </div>
+                    </div>) }
                 </PopoverContent>
             </Popover>
         </div>
