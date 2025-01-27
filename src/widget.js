@@ -6,8 +6,8 @@ class FeedbackWidget {
       }
       this.logo = logo;
       this.projectId = projectId;
-      this.supabaseUrl = supabaseUrl;
-      this.supabaseKey = supabaseKey;
+      this.supabaseUrl = process.env.SUPABASE_URL;
+      this.supabaseKey = process.env.SUPABASE_KEY;
       this.feedbackType = "";
       this.message = "";
       this.rating = 0;
