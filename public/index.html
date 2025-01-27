@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Widget Demo</title>
+</head>
+<body>
+  <h1>Feedback Widget Demo</h1>
+  <div id="widget-container"></div>
+  
+  <!-- Include the widget -->
+  <script src="/public/orma-feedback-widget.js"></script>
+  <script>
+    new FeedbackWidget({
+      logo: "https://your-logo-url.com/logo.png",
+      projectId: "your-project-id",
+      supabaseUrl: "your-supabase-url",
+      supabaseKey: "your-supabase-anon-key",
+    });
+  </script>
+</body>
+</html>
