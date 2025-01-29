@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feedback Widget Demo</title>
-</head>
-<body>
-  <h1>Feedback Widget Demo</h1>
-  <div id="widget-container"></div>
-  
-  <!-- Include the widget -->
-  <script src="orma-feedback-widget.js"></script>
-  <script>
-    FeedbackWidget({
-      logo: "https://via.placeholder.com/100",
-      projectId: "40upj2zovljic30",
-    });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback Widget Demo</title>
+  </head>
+  <body>
+    <h1>Feedback Widget Demo</h1>
+    <button data-feedback-widget>Give feedback</button>
+    <!-- Include the widget -->
+    <script
+      defer
+      src="https://unpkg.com/orma-feedback-widget@1.0.2/dist/orma-feedback-widget.js?pid=40upj2zovljic30"
+    ></script>
+  </body>
 </html>

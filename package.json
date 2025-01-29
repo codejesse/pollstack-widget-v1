@@ -1,15 +1,21 @@
 {
-  "name": "orma-vanilla-widget",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "orma-feedback-widget",
+  "version": "1.0.2",
+  "main": "dist/orma-feedback-widget.js",
   "scripts": {
+    "build": "npx terser src/widget.js --compress --mangle --output dist/orma-feedback-widget.js",
+    "publish": "npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "feedback",
+    "widget",
+    "supabase"
+  ],
+  "author": "Jesse Beke",
+  "license": "MIT",
   "devDependencies": {
     "esbuild": "^0.24.2"
-  }
+  },
+  "description": ""
 }
